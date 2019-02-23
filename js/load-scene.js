@@ -125,7 +125,19 @@ AFRAME.registerComponent('loadscene', {
     sceneEl.addEventListener('loaded', onSceneLoaded);
     getStartedButton.addEventListener('click', onStartClick);
 
-    if (window.webvrpolyfill && window.webvrpolyfill.enabled && AFRAME.utils.device.isMobile()) {
+    var cameraEl = document.querySelector('a-scene a-entity[camera]');
+    cameraEl.setAttribute('camera', 'active', false);
+
+    var introGyroEl = document.createElement('div');
+    introGyroEl.id = introGyroEl.className = 'intro-gyro';
+    introGyroEl.style.cssText = 'background-image: url(' + document.getElementById('intro-card').src + ')';
+
+    var introGyroWrapperEl = document.createElement('div');
+    introGyroWrapperEl.id = introGyroWrapperEl.className = 'intro-gyro-wrapper';
+    introGyroWrapperEl.appendChild(introGyroEl);
+    document.body.appendChild(introGyroWrapperEl);
+
+    // if (window.webvrpolyfill && window.webvrpolyfill.enabled && AFRAME.utils.device.isMobile()) {
       // NOTE: A-Frame injects the `webvr-polyfill`, which polyfills WebVR (`navigator.getVRDisplays`)
       // for mobile browsers (i.e., iOS and Android browsers, except Aloha).
       // WORKAROUND: This conditional check works around a bug present in A-Frame 0.8.2/0.9.0 that
@@ -133,6 +145,6 @@ AFRAME.registerComponent('loadscene', {
       // (since its `User-Agent` string contains 'Android' and 'Mobile VR').
       // SEE: https://github.com/aframevr/aframe/issues/4032
       containerEl.setAttribute('visible', true);
-    }
+    // }
   }
 });

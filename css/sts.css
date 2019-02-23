@@ -10,9 +10,15 @@ h1 {
   margin: 5rem;
 }
 
-.wrapper {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  z-index: 999;
+.intro-gyro-wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.intro-gyro {
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 256px;
+  width: 256px;
 }
